@@ -19,8 +19,11 @@ class Dashboard extends React.Component{
     }
 
     componentDidMount(){
-        //this.interval = setInterval(this.poll, this.state.delay);
-        this.poll();
+       componentDidMount(){
+  this.poll(); // fetch immediately
+  this.interval = setInterval(this.poll, this.state.delay); // keep refreshing
+}
+
     }
 
     componentWillUnmount(){
@@ -33,6 +36,7 @@ class Dashboard extends React.Component{
             .then(response => response.json())
             .then(data => {
                 this.setState({donations: data})
+                console.log("donation sample:", data[0]);
                 data.forEach(d => {
                     if(!this.state.oldDonations.map(o => o.donationID).includes(d.donationID) && d.amount >= 50.0){
                         this.setState({bigDonation: d});
@@ -61,7 +65,7 @@ class Dashboard extends React.Component{
         </Row>
         <Row style={{display: "inline-block"}}>
             <div className="countdown">          
-                <Countdown date={new Date("Feb 26, 2022 23:45:00")} daysInHours={true}/>
+                <Countdown date={new Date("Feb 21, 2026 23:45:00")} daysInHours={true}/>
                 <span style={{padding: 0}}> until Dance Marathon Main Event blastoff!</span>
             </div>
         </Row>
