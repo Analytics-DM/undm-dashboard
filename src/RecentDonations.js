@@ -28,7 +28,7 @@ function RecentDonations(props){
             </thead>
             <tbody>
                 {props.donations.map(donation => {
-                    return <DonationRow donation={donation}/>
+                    return <DonationRow key={donation.donationID} donation={donation}/>
                 })}
             </tbody>
         </table>
