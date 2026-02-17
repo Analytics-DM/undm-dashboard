@@ -26,11 +26,14 @@ function RecentDonations(props){
                     </th>
                 </tr>
             </thead>
-            <tbody>
-                {props.donations.map(donation => {
-                    return <DonationRow key={donation.donationID} donation={donation}/>
-                })}
-            </tbody>
+           <tbody>
+  {props.donations.map((donation, i) => (
+    <DonationRow
+      key={donation.donationID ?? donation.id ?? `${donation.donorName}-${donation.amount}-${i}`}
+      donation={donation}
+    />
+  ))}
+</tbody>
         </table>
     </div> 
     : <></>
